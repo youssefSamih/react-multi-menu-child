@@ -111,7 +111,7 @@ class MetisMenu extends React.Component {
     };
   }
 
-  componentDidUpdate(nextProps) {
+  componentDidUpdate = (nextProps) => {
     if (this.props.content !== nextProps.content) {
       this.updateContent(nextProps.content);
     }
@@ -151,7 +151,9 @@ class MetisMenu extends React.Component {
     else if (props.activeLinkFromLocation) this.changeActiveLinkFromLocation();
   }
 
-  async updateRemoteContent(props) {
+  updateRemoteContent =  async (props) => {
+    if (!props?.ajax) return
+
     const responseData = await Axios(props.ajax);
 
     let content;
