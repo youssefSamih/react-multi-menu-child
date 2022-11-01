@@ -7,7 +7,7 @@
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 /* eslint-env browser */
 
-import React, { StrictMode } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import MetisMenu from '../src';
 
@@ -319,7 +319,5 @@ class App extends React.Component {
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+  <App />,
 );
