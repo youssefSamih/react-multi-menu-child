@@ -68,7 +68,7 @@ You can find this css in your `node_modules/react-multi-menu-child/dist` to embe
 
   - Properties To Set Content (See [Properties For Each Item In Content](#properties-for-each-item-in-content))
     - {Object[]} [`content`=[]] - It keeps all recursive structure of Metismenu
-    - {string | Object[]} [`ajax`] - Url or ajax settings object to get menu as json from remote. (See [Remote Contents](#remote-contents))
+    - {Object[]} [`ajax`] - axios settings object to get menu as json from remote. (See [Axios config](https://github.com/axios/axios#axios-api))
   - [Active Link Selectors](#active-link-selectors) (Higlights and drops down all parents if it is a submenu item)
     - {boolean} [`activeLinkFromLocation`] - Automatically highlights link matched item `to` and browser location.
     - {string | number} [`activeLinkId`] - Find and highlight according to item `id`.
@@ -191,11 +191,7 @@ You may get menu content from a sql server. In this case, you can pass the conte
 
 ### Remote Contents
 
-You are able to get json content from remote. Content may be recursive or flat. `react-multi-menu-child` uses [simple-ajax](https://www.npmjs.com/package/simple-ajax) to send ajax request. You can pass just url string or object with these [Available Options](https://www.npmjs.com/package/simple-ajax#available-options) to `ajax` prop.
-
-```javascript
-<MetisMenu ajax="/get-menu.php" />
-```
+You are able to get json content from remote. Content may be recursive or flat. `react-multi-menu-child` uses [Axios]https://github.com/axios/axios) to send ajax request. You can pass object as this section of axios doc readme describe [Available Options](https://github.com/axios/axios#axios-api) to `ajax` prop.
 
 ```javascript
 <MetisMenu

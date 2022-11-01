@@ -12,7 +12,8 @@ import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import classnames from 'classnames';
-import Ajax from 'simple-ajax';
+import Axios from 'axios';
+
 import Container from '../containers/Container';
 import Link from './DefaultLink';
 import internalReducers from '../reducers/internal';
@@ -150,20 +151,20 @@ class MetisMenu extends React.Component {
     else if (props.activeLinkFromLocation) this.changeActiveLinkFromLocation();
   }
 
-  updateRemoteContent(props) {
-    const ajax = new Ajax(props.ajax);
-    ajax.on('success', (event) => {
-      let content;
-      const { target: { responseText } } = event.target.responseText;
-      try {
-        content = JSON.parse(responseText);
-      } catch (e) {
-        throw new Error(`MetisMenu: Ajax response expected to be json, but got; ${responseText}`);
-      }
-      this.updateContent(content);
-      this.updateActiveLink(props);
-    });
-    ajax.send();
+  async updateRemoteContent(props) {
+    const responseData = await Axios(props.ajax);
+
+    let content;
+
+    try {
+      content = typeof responseData.data === 'string' ? JSON.parse(responseData.data) : responseData.data;
+    } catch (e) {
+      throw new Error(`MetisMenu: Ajax response expected to be json, but got; ${responseData.data}`);
+    }
+
+    this.updateContent(content);
+
+    this.updateActiveLink(props);
   }
 
   updateContent(content) {
@@ -223,10 +224,7 @@ MetisMenu.defaultProps = {
 
 MetisMenu.propTypes = {
   content: PropTypes.arrayOf(PropTypes.object),
-  ajax: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string,
-  ]),
+  ajax: PropTypes.object,
 
   LinkComponent: PropTypes.oneOfType([
     PropTypes.element,
