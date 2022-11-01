@@ -1,6 +1,6 @@
 {
   "name": "react-multi-menu-child",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A ready / simple to use, highly customizable, updateable, ajax supported, animated and material designed menu component for React",
   "main": "lib/index.js",
   "scripts": {
