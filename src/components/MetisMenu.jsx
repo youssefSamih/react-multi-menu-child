@@ -12,7 +12,6 @@ import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import classnames from 'classnames';
-import Axios from 'axios';
 
 import Container from '../containers/Container';
 import Link from './DefaultLink';
@@ -51,8 +50,6 @@ class MetisMenu extends React.Component {
     if (props.content) {
       this.updateContent(props.content);
       this.updateActiveLink(props);
-    } else if (props.ajax) {
-      this.updateRemoteContent(props);
     }
 
     this.classStore = {
@@ -116,9 +113,7 @@ class MetisMenu extends React.Component {
       this.updateContent(nextProps.content);
     }
 
-    if (this.props.ajax !== nextProps.ajax) {
-      this.updateRemoteContent(nextProps);
-    } else if (
+    if (
       this.props.activeLinkId !== nextProps.activeLinkId
       || this.props.activeLinkTo !== nextProps.activeLinkTo
       || this.props.activeLinkLabel !== nextProps.activeLinkLabel
@@ -151,24 +146,6 @@ class MetisMenu extends React.Component {
     else if (props.activeLinkFromLocation) this.changeActiveLinkFromLocation();
   }
 
-  updateRemoteContent =  async (props) => {
-    if (!props?.ajax) return
-
-    const responseData = await Axios(props.ajax);
-
-    let content;
-
-    try {
-      content = typeof responseData.data === 'string' ? JSON.parse(responseData.data) : responseData.data;
-    } catch (e) {
-      throw new Error(`MetisMenu: Ajax response expected to be json, but got; ${responseData.data}`);
-    }
-
-    this.updateContent(content);
-
-    this.updateActiveLink(props);
-  }
-
   updateContent(content) {
     this.store.dispatch(updateContent(this.reduxUid, content));
   }
@@ -197,7 +174,6 @@ class MetisMenu extends React.Component {
 
 MetisMenu.defaultProps = {
   content: [],
-  ajax: null,
   LinkComponent: Link,
   noBuiltInClassNames: false,
   className: null,
@@ -226,7 +202,6 @@ MetisMenu.defaultProps = {
 
 MetisMenu.propTypes = {
   content: PropTypes.arrayOf(PropTypes.object),
-  ajax: PropTypes.object,
 
   LinkComponent: PropTypes.oneOfType([
     PropTypes.element,

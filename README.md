@@ -68,7 +68,6 @@ You can find this css in your `node_modules/react-multi-menu-child/dist` to embe
 
   - Properties To Set Content (See [Properties For Each Item In Content](#properties-for-each-item-in-content))
     - {Object[]} [`content`=[]] - It keeps all recursive structure of Metismenu
-    - {Object[]} [`ajax`] - axios settings object to get menu as json from remote. (See [Axios config](https://github.com/axios/axios#axios-api))
   - [Active Link Selectors](#active-link-selectors) (Higlights and drops down all parents if it is a submenu item)
     - {boolean} [`activeLinkFromLocation`] - Automatically highlights link matched item `to` and browser location.
     - {string | number} [`activeLinkId`] - Find and highlight according to item `id`.
