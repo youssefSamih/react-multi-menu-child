@@ -126,7 +126,7 @@ Item.propTypes = {
   toggleSubMenu: PropTypes.func,
   activateMe: PropTypes.func.isRequired,
   reduxStoreName: PropTypes.string.isRequired,
-  reduxUid: PropTypes.number.isRequired,
+  reduxUid: PropTypes.string.isRequired,
 };
 
 export default Item;

@@ -33,10 +33,10 @@ const generateUUID = () => {
   return uuid;
 };
 
+const reduxUid = generateUUID();
+
 const MetisMenu = React.forwardRef((props, ref) => {
   const dispatch = useDispatch();
-
-  const reduxUid = generateUUID();
 
   const classStore = {
     classMainWrapper: classnames(

@@ -190,6 +190,16 @@ class App extends React.Component {
           content={this.state.menu2}
         />
 
+        <MetisMenu
+          activeLinkFromLocation
+          activeLinkLabel={this.state.activeLinkLabel}
+          activeLinkId={this.state.activeLinkId}
+          classNameItemHasVisibleChild="open"
+          className="menu"
+          onSelected={(e) => {}}
+          content={this.state.menu}
+        />
+
         <div className="body">
           <h1>react-multi-menu-child@1.1.1</h1>
           <h3>Examples to Change Active Link</h3>

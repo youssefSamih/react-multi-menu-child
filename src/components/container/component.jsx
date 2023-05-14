@@ -52,7 +52,7 @@ Container.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object),
   visible: PropTypes.bool,
   reduxStoreName: PropTypes.string.isRequired,
-  reduxUid: PropTypes.number.isRequired,
+  reduxUid: PropTypes.string.isRequired,
   toggleOnHover: PropTypes.bool,
   expandSubMenuOnActiveChild: PropTypes.bool,
 };
