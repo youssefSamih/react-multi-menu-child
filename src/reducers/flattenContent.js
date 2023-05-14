@@ -1,7 +1,5 @@
 /**
  * src/reducers/flattenContent.js
- * Author: H.Alper Tuna <halpertuna@gmail.com>
- * Date: 17.09.2016
  */
 
 /* eslint no-param-reassign: ["error", { "props": false }] */
@@ -24,11 +22,8 @@ const flattenLevel = (content, parentId) => {
       hasActiveChild: false,
       subMenuVisibility: false,
     });
-    if (typeof item.content !== 'undefined') {
-      flatContent = [
-        ...flatContent,
-        ...flattenLevel(item.content, id),
-      ];
+    if (typeof item.content !== "undefined") {
+      flatContent = [...flatContent, ...flattenLevel(item.content, id)];
     }
   });
   return flatContent;
@@ -36,13 +31,13 @@ const flattenLevel = (content, parentId) => {
 
 let trace;
 const mapTrace = (content, parentId) => {
-  const subItems = content.filter(item => item.parentId === parentId);
+  const subItems = content.filter((item) => item.parentId === parentId);
   subItems.forEach((item) => {
     item.trace = [...trace];
     trace.push(item.id);
     item.hasSubMenu = mapTrace(content, item.id);
     if (item.hasSubMenu) {
-      item.to = '#';
+      item.to = "#";
     }
     trace.pop();
   });
