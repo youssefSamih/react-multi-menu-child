@@ -159,6 +159,7 @@ class App extends React.Component {
 
     this.state = {
       menu: menu1,
+      menu2: menu2,
     };
   }
 
@@ -174,11 +175,19 @@ class App extends React.Component {
           activeLinkId={this.state.activeLinkId}
           classNameItemHasVisibleChild="open"
           className="menu"
-          onSelected={(e) => {
-            /* e.preventDefault();
-            console.log('onSelected', e); */
-          }}
+          onSelected={(e) => {}}
           content={this.state.menu}
+        />
+
+        <MetisMenu
+          toggleOnHover
+          activeLinkFromLocation
+          activeLinkLabel={this.state.activeLinkLabel}
+          activeLinkId={this.state.activeLinkId}
+          classNameItemHasVisibleChild="open"
+          className="menu"
+          onSelected={(e) => {}}
+          content={this.state.menu2}
         />
 
         <div className="body">
