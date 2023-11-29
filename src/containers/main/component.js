@@ -2,21 +2,22 @@
  * src/containers/main
  */
 
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { memo } from "react";
+import { shallowEqual, useSelector } from "react-redux";
 
 import Container from "../../components/container/component";
 
-const MainContainer = (props) => {
-  const items = useSelector((state) => {
-    return (
-      state[props.reduxStoreName]?.content[props.reduxUid]?.filter(
-        (item) => item.parentId === props.itemId
-      ) || []
-    );
+const createSelector = (reduxStoreName, reduxUid, itemId) => (state) => {
+  const itemsInStore = state[reduxStoreName]?.content[reduxUid] || [];
+  return itemsInStore.filter((item) => item.parentId === itemId);
+};
+
+const MainContainer = memo((props) => {
+  const items = useSelector(createSelector(props.reduxStoreName, props.reduxUid, props.itemId), {
+    equalityFn: shallowEqual
   });
 
   return <Container {...props} items={items} />;
-};
+});
 
 export default MainContainer;
