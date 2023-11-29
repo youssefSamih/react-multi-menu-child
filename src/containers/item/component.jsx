@@ -36,12 +36,7 @@ const ItemContainer = (props) => {
   }
 
   React.useEffect(() => {
-    if (
-      !props.expandSubMenuOnActiveChild ||
-      !props.hasActiveChild ||
-      !props.hasSubMenu
-    )
-      return;
+    if (!props.hasActiveChild || !props.hasSubMenu) return;
 
     dispatch(
       changeSubMenuVisibility(
@@ -51,11 +46,7 @@ const ItemContainer = (props) => {
         props.subMenuVisibility
       )
     );
-  }, [
-    props.expandSubMenuOnActiveChild,
-    props.hasActiveChild,
-    props.hasSubMenu,
-  ]);
+  }, [props.hasActiveChild, props.hasSubMenu]);
 
   return (
     <Item {...props} toggleSubMenu={toggleSubMenu} activateMe={activateMe} />
