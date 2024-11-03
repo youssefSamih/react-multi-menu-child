@@ -1,28 +1,28 @@
-import React, { useEffect, useImperativeHandle } from "react";
-import classnames from "classnames";
-import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useImperativeHandle } from 'react';
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 
-import Link from "../default-link/component";
+import Link from '../default-link/component';
 import {
   updateContent,
   changeActiveLinkId,
   changeActiveLinkTo,
   changeActiveLinkLabel,
   changeActiveLinkFromLocation,
-} from "../../actions/content";
-import { updateListener } from "../../actions/emitters";
-import MainContainer from "../../containers/main/component";
+} from '../../actions/content';
+import { updateListener } from '../../actions/emitters';
+import MainContainer from '../../containers/main/component';
 
 const generateUUID = () => {
-  let uuid = "";
-  const hexDigits = "0123456789abcdef";
+  let uuid = '';
+  const hexDigits = '0123456789abcdef';
 
   for (let i = 0; i < 36; i++) {
     if (i === 8 || i === 13 || i === 18 || i === 23) {
-      uuid += "-";
+      uuid += '-';
     } else if (i === 14) {
-      uuid += "4";
+      uuid += '4';
     } else if (i === 19) {
       uuid += hexDigits.substr((Math.random() * 4) | (0 + 8), 1);
     } else {
@@ -44,10 +44,10 @@ const MetisMenu = React.forwardRef((props, ref) => {
       props.className
     ),
     classContainer:
-      typeof props.classNameContainer === "function"
+      typeof props.classNameContainer === 'function'
         ? props.classNameContainer
         : classnames(
-            { "metismenu-container": !props.noBuiltInClassNames },
+            { 'metismenu-container': !props.noBuiltInClassNames },
             props.classNameContainer
           ),
     classContainerVisible: classnames(
@@ -55,11 +55,11 @@ const MetisMenu = React.forwardRef((props, ref) => {
       props.classNameContainerVisible
     ),
     classItem: classnames(
-      { "metismenu-item": !props.noBuiltInClassNames },
+      { 'metismenu-item': !props.noBuiltInClassNames },
       props.classNameItem
     ),
     classLink: classnames(
-      { "metismenu-link": !props.noBuiltInClassNames },
+      { 'metismenu-link': !props.noBuiltInClassNames },
       props.classNameLink
     ),
     classItemActive: props.classNameItemActive,
@@ -70,15 +70,15 @@ const MetisMenu = React.forwardRef((props, ref) => {
       props.classNameLinkActive
     ),
     classLinkHasActiveChild: classnames(
-      { "has-active-child": !props.noBuiltInClassNames },
+      { 'has-active-child': !props.noBuiltInClassNames },
       props.classNameLinkHasActiveChild
     ),
     classIcon: classnames(
-      { "metismenu-icon": !props.noBuiltInClassNames },
+      { 'metismenu-icon': !props.noBuiltInClassNames },
       props.classNameIcon
     ),
     classStateIcon: classnames(
-      { "metismenu-state-icon": !props.noBuiltInClassNames },
+      { 'metismenu-state-icon': !props.noBuiltInClassNames },
       props.classNameStateIcon
     ),
 
@@ -177,16 +177,16 @@ MetisMenu.defaultProps = {
   classNameLinkHasActiveChild: null,
   classNameIcon: null,
   classNameStateIcon: null,
-  iconNamePrefix: "fa fa-",
-  iconNameStateHidden: "caret-left",
-  iconNameStateVisible: "caret-left rotate-minus-90",
+  iconNamePrefix: null,
+  iconNameStateHidden: 'caret-left',
+  iconNameStateVisible: 'caret-left rotate-minus-90',
   activeLinkId: null,
   activeLinkTo: null,
   activeLinkLabel: null,
   activeLinkFromLocation: false,
   onSelected: null,
   useExternalReduxStore: null,
-  reduxStoreName: "metisMenuStore",
+  reduxStoreName: 'metisMenuStore',
 };
 
 MetisMenu.propTypes = {
